@@ -3,6 +3,12 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
+// JavaEE   ->  javax
+// JakartaEE -> jakarta
+
 /**
  * --------------------------------------------
  * Author: Shamodha Sahan
@@ -14,14 +20,50 @@ import jakarta.persistence.*;
  * --------------------------------------------
  **/
 
-@Entity
+@Entity // Customer
 @Table(name = "customer_table")
-// customer_table
+// (DB name,table name, column name) customer_table_test
 public class Customer {
-    @Id
+    @Id // primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // IDENTITY - auto increment
+    // AUTO - JPA picks best strategy based on database dialect
+    // SEQUENCE - using database SEQUENCE
     private int id;
 
+    // customize column
+    @Column(
+            name = "customer_name",
+            nullable = false,
+            // (nullable) can null - true (default), can't null - false
+            unique = true, // no duplicate date
+            length = 100 // varchar(100)
+    )
     private String name;
+
+    @Embedded
+    private FullName fullName;
+
+    private double weight;
+
+    // 100.00, 500.999
+    @Column(precision = 9, scale = 2) // 123456789.11
+    private BigDecimal price;
+
+    // java.sql.Date
+    private Date date;
+
+    private boolean isTrue;
+//    Boolean
+
+    // image - binary data (BASE64)
+    // large data (text or binary data)
+    @Lob // text, clob, longtext
+    @Column(columnDefinition = "TEXT")
+    private String address;
+
+    @Transient // non persistent, npt save in database
+    private String debitCardNumber;
 
     public Customer() {
     }

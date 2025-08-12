@@ -21,8 +21,9 @@ public class FactoryConfiguration {
     private SessionFactory sessionFactory;
 
     private FactoryConfiguration() {
-        // xml
-        Configuration configuration = new Configuration().configure();
+        // xml, property files
+        Configuration configuration = new Configuration();
+        configuration.configure();
         // config entity class
         configuration.addAnnotatedClass(Customer.class);
         // create session factory

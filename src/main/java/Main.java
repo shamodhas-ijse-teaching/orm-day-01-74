@@ -18,17 +18,20 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // get all -
-        // research how get all customer
-        Session session = FactoryConfiguration.getInstance().getSession();
-
-        // HQL
-        // JPQL
-        List<Customer> customers =
-                session.createQuery("FROM Customer", Customer.class)
-                        .list();
-        customers.forEach(System.out::println);
+        FactoryConfiguration.getInstance();
     }
+//    public static void main(String[] args) {
+//        // get all -
+//        // research how get all customer
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//
+//        // HQL
+//        // JPQL
+////        List<Customer> customers =
+////                session.createQuery("FROM Customer", Customer.class)
+////                        .list();
+////        customers.forEach(System.out::println);
+//    }
 
     private void deleteCustomer() {
         Session session = FactoryConfiguration.getInstance().getSession();
